@@ -13,9 +13,6 @@ post '/' do
   spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
     :userID => gracenote_conf["userID"]}
   gracenote = Gracenote.new(spec)
-puts params[:artist]
-puts params[:album_title]
-puts params[:track_title]
   @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title]).inspect
   erb :index
 end
