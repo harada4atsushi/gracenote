@@ -4,6 +4,7 @@ require 'sinatra'
 require 'yaml'
 
 get '/' do
+  @result = []
   erb :index
 end
 
@@ -13,7 +14,7 @@ post '/' do
   spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
     :userID => gracenote_conf["userID"]}
   gracenote = Gracenote.new(spec)
-  @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title]).inspect
+  @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
   erb :index
 end
 

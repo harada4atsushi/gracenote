@@ -18,8 +18,35 @@
   アーティスト名：<input type="text" name="artist" /><br />
   アルバム名：<input type="text" name="album_title" /><br />
   トラック名：<input type="text" name="track_title" /><br />
+  <input type="submit" value="検索"/><br />
+  <%= @result.class %>
+  取得結果<br />
+  <% @result.each do |rec| %>
+  <table border="1">
+    <tr>
+      <td>アルバムアーティスト名</td>
+      <td><%= rec[:album_artist_name] %>
+    </tr>
+    <tr>
+      <td>アルバムタイトル</td>
+      <td><%= rec[:album_title] %></td>
+    </tr>
+    <tr>
+      <td>ジャンル</td>
+      <td><% rec[:genre].each do |genre| %><%= genre[:text] + "<br />" %><% end %></td>
+    </tr>
+    <tr>
+      <td>アルバムアート</td>
+      <td><img src="<%= rec[:album_art_url][0] %>" /></td>
+    </tr>
+    <tr>
+      <td>アーティスト画像</td>
+      <td><img src="<%= rec[:artist_image_url][0] %>" /></td>
+    </tr>
+  </table>
+  <% end %>
+  <br />
   <%= @result %>
-  <input type="submit" value="検索"/>
 </form>
 </body>
 </html>
